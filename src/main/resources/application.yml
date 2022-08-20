@@ -1,0 +1,56 @@
+spring:
+  profiles:
+    active: cindya
+
+---
+spring:
+  profiles:
+    group:
+      "server": "serverdb,common"
+      "cindya": "cindyadb,common"
+      "reese": "reesedb,common"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "serverdb"
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://{url}/kurvey"
+    username:
+    password:
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "cindyadb"
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: "jdbc:mysql://localhost:3306/i_life_kurly?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul"
+      username:
+      password:
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "reesedb"
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: "jdbc:mysql://localhost:3306/i_life_kurly?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul"
+      username:
+      password:
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "common"
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: false
+    show-sql: true
