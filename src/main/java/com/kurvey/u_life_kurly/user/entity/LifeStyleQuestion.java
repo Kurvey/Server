@@ -21,4 +21,6 @@ public class LifeStyleQuestion {
     @Column(length = 45)
     @ApiModelProperty(value = "설문문항")
     private String question;
+
+    private String imageUrl;
 }
