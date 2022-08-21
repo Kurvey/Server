@@ -6,8 +6,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-
-
 @Setter
 @Getter
 @NoArgsConstructor
@@ -19,7 +17,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String userId; //email 대신 userId
+    private String userId;
 
     private String name;
 
@@ -28,6 +26,5 @@ public class User {
     private LocalDate birthDay;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 6)
     private Gender gender;
 }

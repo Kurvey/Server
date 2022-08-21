@@ -21,11 +21,13 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/api/v1/signup")
-    public ResponseEntity createUser(@RequestBody @Validated UserForm form){
+    @ApiOperation(value = "회원가입 API")
+    @ResponseStatus(CREATED)
+    @PostMapping("signup")
+    public ResponseEntity<?> createUser(@RequestBody @Validated UserForm form){
         userService.creatUser(form);
 
-        return new ResponseEntity(CREATED);
+        return new ResponseEntity<>(CREATED);
     }
 
     @ApiOperation(value = "로그인 API")

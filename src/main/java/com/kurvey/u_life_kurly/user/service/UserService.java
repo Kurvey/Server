@@ -19,13 +19,12 @@ public class UserService {
     private final BCryptPasswordEncoder encoder;
 
     @Transactional
-    public Long creatUser(UserForm form){
-        if(userRepository.existsByUserId(form.getUserId()))
+    public void creatUser(UserForm form){
+        if(userRepository.findByUserId(form.getUserId()).isPresent())
             throw new RuntimeException("중복된 Id입니다.");
         User user = form.toEntity();
         user.setPassword(encoder.encode(user.getPassword()));
         userRepository.save(user);
-        return user.getId();
     }
 
 
