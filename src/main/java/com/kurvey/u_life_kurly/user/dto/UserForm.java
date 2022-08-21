@@ -29,9 +29,8 @@ public class UserForm {
                 .userId(userId)
                 .name(name)
                 .password(password)
-                .bitrhday(birthDay)
+                .birthDay(birthDay)
                 .gender(gender)
-                .role(role)
                 .build();
     }
 }
