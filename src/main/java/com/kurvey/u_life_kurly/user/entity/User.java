@@ -1,15 +1,11 @@
 package com.kurvey.u_life_kurly.user.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+
+
 
 @Setter
 @Getter
@@ -21,7 +17,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String email;
+    private String userId; //email 대신 userId
 
     private String name;
 
@@ -29,13 +25,10 @@ public class User {
 
     private LocalDate birthDay;
 
-    private Integer numberOfFamily;
-
-    private Boolean hasBaby;
-
-    private Boolean hasDog;
-
-    private Boolean hasCat;
-
-    private Boolean hasPlant;
+    @Builder
+    public User(Long id, String userId, String password){
+        this.id = id;
+        this.userId = userId;
+        this.password = password;
+    }
 }
