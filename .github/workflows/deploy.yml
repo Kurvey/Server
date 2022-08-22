@@ -35,8 +35,9 @@ jobs:
         distribution: 'temurin'
         
     - name: Make application.yml
-      run: touch ./src/main/resources/application.yml
-    - run: echo "$APPLICATION_YML" > ./src/main/resources/application.yml
+      run: |
+        touch ./src/main/resources/application.yml
+        echo "$APPLICATION_YML" > ./src/main/resources/application.yml
       env: 
         APPLICATION_YML: ${{ secrets.APPLICATION_YML }}
       
