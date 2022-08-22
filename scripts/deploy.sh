@@ -1,35 +1,24 @@
 #!/bin/bash
 
 REPOSITORY=/home/ubuntu/u-life-kurly/server
+PROJECT_NAME=u_life_kurly
 
-echo "> Copy build files"
+echo "> 현재 구동중인 애플리케이션 pid 확인"
+CURRENT_PID=$(pgrep -fl $PROJECT_NAME | grep java | awk '{print $1}')
 
-cp $REPOSITORY/server/*.jar $REPOSITORY/
-
-echo "> Checking pid of currently running application"
-
-CURRENT_PID=$(pgrep -fl server | grep java | awk '{print $1}')
-
-echo "Current application's pid: $CURRENT_PID"
-
-if [ -z "$CURRENT_PID" ]; then
-    echo "> The application is not currently running, so it will not be shut down."
+if [ -z $CURRENT_PID ]; then
+    echo "> 현재 구동중인 애플리케이션이 없으므로 종료하지 않습니다."
 else
     echo "> kill -15 $CURRENT_PID"
     kill -15 $CURRENT_PID
     sleep 5
 fi
 
-echo "> Deploy new application"
-
+echo "> 새 어플리케이션 배포"
 JAR_NAME=$(ls -tr $REPOSITORY/*.jar | tail -n 1)
 
-echo "> JAR Name: $JAR_NAME"
-
-echo "> chmod + x $JAR_NAME"
-
+echo "> $JAR_NAME에 실행권한 추가"
 chmod +x $JAR_NAME
 
-echo "> Execute $JAR_NAME "
-
+echo "> $JAR_NAME 실행"
 nohup java -jar $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
