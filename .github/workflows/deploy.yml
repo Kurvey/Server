@@ -38,12 +38,8 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew clean build
         
-    - name: Make Directory
-      run: mkdir deploy
-    - name: Copy Jar
-      run: cp ./build/libs/*.jar ./deploy/
     - name: Make File Zip
-      run: zip -r -qq -j ./u_life_kurly-build.zip ./deploy
+      run: zip -r ./u_life_kurly-build.zip .
     - name: Save at AWS S3
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
