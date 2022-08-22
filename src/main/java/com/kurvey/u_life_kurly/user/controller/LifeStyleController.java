@@ -1,13 +1,15 @@
 package com.kurvey.u_life_kurly.user.controller;
 
+import com.kurvey.u_life_kurly.config.jwt.PrincipalDetails;
+import com.kurvey.u_life_kurly.user.dto.UserAnswerDto;
 import com.kurvey.u_life_kurly.user.entity.LifeStyleQuestion;
+import com.kurvey.u_life_kurly.user.entity.User;
 import com.kurvey.u_life_kurly.user.service.LifeStyleService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +25,12 @@ public class LifeStyleController {
     @GetMapping
     public ResponseEntity<List<LifeStyleQuestion>> getLifeStyleQuestions(){
         return new ResponseEntity<>(lifeStyleService.getLifeStyleQuestions(), OK);
+    }
+
+    @PostMapping("{userId}")
+    public ResponseEntity<?> saveLifeStyleAnswers(@PathVariable Long userId,
+                                               @RequestBody UserAnswerDto userAnswerDto){
+        lifeStyleService.saveLifeStyleAnswers(userId, userAnswerDto);
+        return new ResponseEntity<>(OK);
     }
 }

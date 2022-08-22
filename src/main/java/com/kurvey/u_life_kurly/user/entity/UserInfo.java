@@ -29,4 +29,6 @@ public class UserInfo {
 
     private Boolean hasPlant;
 
+    @ManyToOne
+    private SelectionSet selectionSet;
 }

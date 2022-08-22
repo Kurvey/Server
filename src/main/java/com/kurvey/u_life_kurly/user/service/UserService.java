@@ -1,7 +1,7 @@
 package com.kurvey.u_life_kurly.user.service;
 
 import com.kurvey.u_life_kurly.config.jwt.JwtTokenProvider;
-import com.kurvey.u_life_kurly.user.Repository.UserRepository;
+import com.kurvey.u_life_kurly.user.repository.UserRepository;
 import com.kurvey.u_life_kurly.user.dto.SignInDto;
 import com.kurvey.u_life_kurly.user.dto.UserForm;
 import com.kurvey.u_life_kurly.user.entity.User;
