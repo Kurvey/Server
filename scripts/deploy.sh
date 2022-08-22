@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPOSITORY=/home/ubuntu/u-life-kurly
+REPOSITORY=/home/ubuntu/u-life-kurly/server
 
 echo "> Copy build files"
 
