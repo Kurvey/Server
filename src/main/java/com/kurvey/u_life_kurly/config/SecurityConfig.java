@@ -24,7 +24,8 @@ public class SecurityConfig {
             "/webjars/**",
             /*------유저 회원가입, 로그인--------- */
             "/api/v1/signup",
-            "/api/v1/signin"
+            "/api/v1/signin",
+            "/api/v1/lifestyle/**"
     };
 
     @Bean
