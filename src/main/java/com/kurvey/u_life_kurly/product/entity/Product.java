@@ -1,9 +1,6 @@
 package com.kurvey.u_life_kurly.product.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,30 +8,23 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String name; //상품명
 
-    private String description;
+    private String description; //한 줄 설명
 
     @ManyToOne
     private Category category;
 
-    private int cost;
+    private int cost; //금액
 
-    private String deliveryType;
-
-    private String seller;
-
-    private String packagingType;
-
-    private String salesUnit;
-
-    private String allergy;
+    private String deliveryType;  //배송 유형
 
     public Category getCategory() {
         return category;
