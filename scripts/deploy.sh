@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REPOSITORY=/home/ubuntu/u-life-kurly/server
-PROJECT_NAME=Server
+PROJECT_NAME=U_Life_Kurly
 
 echo "> Build 파일 복사"
 cp $REPOSITORY/*.jar $REPOSITORY/
