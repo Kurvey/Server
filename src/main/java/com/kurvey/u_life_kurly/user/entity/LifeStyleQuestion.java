@@ -18,9 +18,10 @@ public class LifeStyleQuestion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ApiModelProperty(value = "설문문항", example = "채식주의")
     @Column(length = 45)
-    @ApiModelProperty(value = "설문문항")
     private String question;
 
+    @ApiModelProperty(value = "설문문항 이미지 URL", example = "http://...")
     private String imageUrl;
 }
