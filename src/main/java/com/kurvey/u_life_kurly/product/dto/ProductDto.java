@@ -39,6 +39,7 @@ public class ProductDto {
         this.id = product.getId();
         this.deliveryType = product.getDeliveryType();
         this.productName = product.getName();
+        this.imageUrl = product.getImageUrl();
         this.cost = product.getCost();
         this.description = product.getDescription();
     }
