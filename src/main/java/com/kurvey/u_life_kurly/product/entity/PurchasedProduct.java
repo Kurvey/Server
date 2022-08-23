@@ -1,9 +1,6 @@
 package com.kurvey.u_life_kurly.product.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +8,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 public class PurchasedProduct {
     @Id
@@ -23,5 +21,5 @@ public class PurchasedProduct {
     @ManyToOne
     private Product product;
 
-    private int quantity;
+    private int quantity = 1;
 }
