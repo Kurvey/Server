@@ -2,6 +2,7 @@ package com.kurvey.u_life_kurly.product.dto;
 
 import com.kurvey.u_life_kurly.product.entity.Product;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class ProductDto {
     @ApiModelProperty(value = "상품 Id", example = "1")
     private Long id;
@@ -32,6 +34,14 @@ public class ProductDto {
     @ApiModelProperty(value = "상품 한 줄 설명", example = "아오리 사과 1.5kg(10입내)")
     @NotNull
     private String description;
+
+    public ProductDto(Product product){
+        this.id = product.getId();
+        this.deliveryType = product.getDeliveryType();
+        this.productName = product.getName();
+        this.cost = product.getCost();
+        this.description = product.getDescription();
+    }
 
     public Product toEntity(){
         return Product.builder()
