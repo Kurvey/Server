@@ -1,5 +1,6 @@
 package com.kurvey.u_life_kurly.product.service;
 
+import com.kurvey.u_life_kurly.product.dto.CategoryDto;
 import com.kurvey.u_life_kurly.product.dto.ProductDto;
 import com.kurvey.u_life_kurly.product.entity.Product;
 import com.kurvey.u_life_kurly.product.repository.ProductRepository;
