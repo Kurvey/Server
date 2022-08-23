@@ -1,5 +1,6 @@
 package com.kurvey.u_life_kurly.product.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,16 +16,21 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name; //상품명
+    private String deliveryType;
 
-    private String description; //한 줄 설명
+    private String imageUrl;
 
+    private String name;
+
+    private int cost;
+
+    private String description;
+
+    @ApiModelProperty(example = "과일")
     @ManyToOne
+    @JoinColumn
     private Category category;
 
-    private int cost; //금액
-
-    private String deliveryType;  //배송 유형
 
     public Category getCategory() {
         return category;
@@ -33,4 +39,5 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
+
 }
