@@ -4,22 +4,20 @@ import com.kurvey.u_life_kurly.product.dto.ProductDto;
 import com.kurvey.u_life_kurly.product.dto.ProductsByCategoryDto;
 import com.kurvey.u_life_kurly.product.entity.Category;
 import com.kurvey.u_life_kurly.product.entity.Product;
+import com.kurvey.u_life_kurly.product.repository.CategoryRepository;
 import com.kurvey.u_life_kurly.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
-
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
 
     @Transactional
     public void saveProduct(ProductDto productDto) {
@@ -27,15 +25,19 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<ProductsByCategoryDto> searchProducts(String keyword) {
-        List<Product> products = productRepository.findAllByNameContaining(keyword);
         List<ProductsByCategoryDto> productsByCategoryDtoList = new ArrayList<>();
+        List<Product> products = productRepository.findAllByNameContaining(keyword);
+
+        categoryRepository.findByNameContaining(keyword)
+                .ifPresent(category -> products.addAll(productRepository.findAllByCategoryAndNameNotContaining(category, keyword)));
 
         if(products.isEmpty()) return productsByCategoryDtoList;
 
         Map<Category, List<Product>> productsByCategory = products.stream()
                 .collect(Collectors.groupingBy(Product::getCategory));
+
         productsByCategoryDtoList = productsByCategory.entrySet().stream()
                 .map(e -> new ProductsByCategoryDto(e.getKey().getId(), e.getKey().getName(), e.getValue().stream()
                         .map(this::convertEntityToDto)
