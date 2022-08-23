@@ -1,6 +1,6 @@
 package com.kurvey.u_life_kurly.config.jwt;
 
-import com.kurvey.u_life_kurly.user.Repository.UserRepository;
+import com.kurvey.u_life_kurly.user.repository.UserRepository;
 import com.kurvey.u_life_kurly.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
