@@ -28,7 +28,7 @@ public class UserAnswerDto {
     @NotNull
     private Boolean hasPlant;
 
-    @ApiModelProperty(value = "선택한 항목", example = "3, 2, 6")
+    @ApiModelProperty(value = "선택한 항목", example = "[3, 2, 6]")
     @NotNull
     private List<Long> selects;
 }

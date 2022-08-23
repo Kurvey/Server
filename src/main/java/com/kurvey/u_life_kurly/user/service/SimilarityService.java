@@ -1,5 +1,6 @@
 package com.kurvey.u_life_kurly.user.service;
 
+import com.kurvey.u_life_kurly.error.CustomException;
 import com.kurvey.u_life_kurly.user.entity.PriorityWeight;
 import com.kurvey.u_life_kurly.user.entity.SelectionSet;
 import com.kurvey.u_life_kurly.user.entity.Similarity;
@@ -15,8 +16,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import static com.kurvey.u_life_kurly.response.StatusCode.PRIORITY_WEIGHTS_NOT_SET;
+import static com.kurvey.u_life_kurly.response.StatusCode.REGENERATE_SELECTION_SET;
 
 @RequiredArgsConstructor
 @Service
@@ -38,14 +41,14 @@ public class SimilarityService {
 
         List<PriorityWeight> priorityWeights = priorityWeightRepository.findAll(Sort.by(Sort.Direction.DESC, "priority"));
         if(priorityWeights.isEmpty() || priorityWeights.size() != SELECTION_COUNT)
-            throw new RuntimeException("우선순위 가중치 값이 세팅되지 않았습니다.");
+            throw new CustomException(PRIORITY_WEIGHTS_NOT_SET);
 
         List<Similarity> similarities = new ArrayList<>();
         for(SelectionSet selectionSet : selectionSets){
             long[] questionIds = SelectionSetGenerator.splitSelectionSetToSelections(selectionSet.getSelection());
             if(questionIds.length != SELECTION_COUNT){
                 this.generateSelectionSets(SELECTION_COUNT);
-                throw new RuntimeException("변경사항이 있어 요청을 처리하지 못했습니다. 다시 시도해주세요.");
+                throw new CustomException(REGENERATE_SELECTION_SET);
             }
 
             int value = 0;

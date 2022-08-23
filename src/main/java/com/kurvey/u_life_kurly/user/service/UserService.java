@@ -2,10 +2,10 @@ package com.kurvey.u_life_kurly.user.service;
 
 import com.kurvey.u_life_kurly.config.jwt.JwtTokenProvider;
 import com.kurvey.u_life_kurly.error.CustomException;
-import com.kurvey.u_life_kurly.user.Repository.UserRepository;
 import com.kurvey.u_life_kurly.user.dto.SignInDto;
 import com.kurvey.u_life_kurly.user.dto.UserForm;
 import com.kurvey.u_life_kurly.user.entity.User;
+import com.kurvey.u_life_kurly.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
