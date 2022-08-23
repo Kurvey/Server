@@ -33,7 +33,8 @@ public class ProductService {
 
         if(products.isEmpty()) return categoryDtos;
 
-        Map<String, List<Product>> productsByCategory = products.stream().collect(Collectors.groupingBy(p -> p.getCategory().getName()));
+        Map<String, List<Product>> productsByCategory = products.stream()
+                .collect(Collectors.groupingBy(p -> p.getCategory().getName()));
         categoryDtos = productsByCategory.entrySet().stream()
                 .map(e -> new CategoryDto(e.getKey(), e.getValue().stream()
                         .map(this::convertEntityToDto)

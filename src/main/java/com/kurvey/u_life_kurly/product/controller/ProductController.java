@@ -2,6 +2,7 @@ package com.kurvey.u_life_kurly.product.controller;
 
 import com.kurvey.u_life_kurly.product.dto.CategoryDto;
 import com.kurvey.u_life_kurly.product.service.ProductService;
+import com.kurvey.u_life_kurly.response.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.kurvey.u_life_kurly.response.StatusCode.SUCCESS;
+
 
 @Api(tags = "검색")
 @RestController
@@ -23,9 +26,9 @@ public class ProductController {
 
     @ApiOperation(value = "상품 검색 API")
     @GetMapping("{keyword}")
-    public ResponseEntity searchProducts(@PathVariable String keyword){
+    public ResponseEntity<Response<?>> searchProducts(@PathVariable String keyword){
         List<CategoryDto> products = productService.searchProducts(keyword);
-        return ResponseEntity.ok(products);
+        return new Response<>(SUCCESS, products).toResponseEntity();
     }
 
 }
