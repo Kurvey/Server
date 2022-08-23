@@ -1,18 +1,22 @@
 package com.kurvey.u_life_kurly.user.service;
 
+import com.kurvey.u_life_kurly.error.CustomException;
 import com.kurvey.u_life_kurly.user.dto.UserAnswerDto;
-import com.kurvey.u_life_kurly.user.entity.*;
-import com.kurvey.u_life_kurly.user.repository.*;
+import com.kurvey.u_life_kurly.user.entity.LifeStyleQuestion;
+import com.kurvey.u_life_kurly.user.entity.SelectionSet;
+import com.kurvey.u_life_kurly.user.entity.User;
+import com.kurvey.u_life_kurly.user.repository.LifeStyleQuestionRepository;
+import com.kurvey.u_life_kurly.user.repository.SelectionSetRepository;
+import com.kurvey.u_life_kurly.user.repository.UserRepository;
 import com.kurvey.u_life_kurly.user.util.SelectionSetGenerator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+
+import static com.kurvey.u_life_kurly.response.StatusCode.SELECTION_SET_GENERATION_FAULT;
+import static com.kurvey.u_life_kurly.response.StatusCode.USER_NOT_FOUND;
 
 @RequiredArgsConstructor
 @Service
@@ -25,7 +29,7 @@ public class LifeStyleService {
     private final LifeStyleAnswerService lifeStyleAnswerService;
     private final SimilarityService similarityService;
 
-    private final int SELECTION_COUNT = 3;
+    private static final int SELECTION_COUNT = 3;
 
     @Transactional(readOnly = true)
     public List<LifeStyleQuestion> getLifeStyleQuestions() {
@@ -36,7 +40,7 @@ public class LifeStyleService {
     @Transactional
     public void saveLifeStyleAnswers(Long userId, UserAnswerDto userAnswerDto) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("가입되지 않은 사용자입니다."));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
         deleteUserAnswers(user);
         String selects = SelectionSetGenerator.makeSelectionsAsString(userAnswerDto.getSelects().stream().mapToLong(Long::longValue).toArray());
         SelectionSet selectionSet = selectionSetRepository.findBySelection(selects)
@@ -44,7 +48,7 @@ public class LifeStyleService {
         if(selectionSet == null) {
             similarityService.generateSelectionSets(SELECTION_COUNT);
             selectionSet = selectionSetRepository.findBySelection(selects)
-                    .orElseThrow(() -> new RuntimeException("선택 조합이 제대로 생성되지 않았습니다."));
+                    .orElseThrow(() -> new CustomException(SELECTION_SET_GENERATION_FAULT));
         }
         userInfoService.saveUserInfo(user, userAnswerDto, selectionSet);
         lifeStyleAnswerService.saveUserSelects(user, userAnswerDto.getSelects(), SELECTION_COUNT);
