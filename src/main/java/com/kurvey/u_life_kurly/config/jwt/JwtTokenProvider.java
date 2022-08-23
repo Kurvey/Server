@@ -19,8 +19,10 @@ import java.util.Date;
 @RequiredArgsConstructor
 @Component
 public class JwtTokenProvider {
+    public static final String HEADER = "Authorization";
+    public static final String BEARER = "Bearer ";
+
     private final UserDetailsService userDetailsService;
-    private final String BEARER = "Bearer ";
 
     @Value("${jwt.secret}")
     private String secret;
