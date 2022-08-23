@@ -17,7 +17,8 @@ public enum StatusCode {
     INCORRECT_PASSWORD(BAD_REQUEST, "E2", "비밀번호가 맞지 않습니다"),
     INVALID_INPUT(BAD_REQUEST, "E3", "입력이 규칙에 맞지 않습니다"),
     QUESTION_NOT_FOUND(NOT_FOUND, "E4", "존재하지 않는 문항이 입력되었습니다"),
-    USER_INFO_DOES_NOT_EXIST(NOT_FOUND, "E5", "유저 정보가 입력되지 않았습니다."),
+    USER_INFO_DOES_NOT_EXIST(NOT_FOUND, "E5", "유저 정보가 입력되지 않았습니다"),
+    PRODUCT_NOT_FOUND(NOT_FOUND, "E6", "존재하지 않는 상품입니다"),
 
     SELECTION_SET_GENERATION_FAULT(INTERNAL_SERVER_ERROR, "ES0", "선택지 조합 생성 과정에서 문제가 발생했습니다"),
     PRIORITY_WEIGHTS_NOT_SET(INTERNAL_SERVER_ERROR, "ES1", "우선순위 가중치 값이 세팅되지 않았습니다"),

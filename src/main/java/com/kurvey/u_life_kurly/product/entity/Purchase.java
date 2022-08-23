@@ -1,19 +1,16 @@
 package com.kurvey.u_life_kurly.product.entity;
 
 import com.kurvey.u_life_kurly.user.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 public class Purchase {
     @Id
@@ -24,4 +21,9 @@ public class Purchase {
     private User user;
 
     private LocalDateTime paidAt;
+
+    @PrePersist
+    public void paidAt(){
+        this.paidAt = LocalDateTime.now();
+    }
 }
