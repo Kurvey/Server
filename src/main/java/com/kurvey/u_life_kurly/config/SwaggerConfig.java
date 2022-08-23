@@ -24,7 +24,7 @@ public class SwaggerConfig {
                 .apiInfo(getApiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.kurvey.u_life_kurly"))
-                .paths(PathSelectors.any())
+                .paths(PathSelectors.ant("/api/v1/**"))
                 .build()
                 .securityContexts(List.of(securityContext()))
                 .securitySchemes(List.of(apiKey()));
