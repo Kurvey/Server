@@ -2,6 +2,7 @@ package com.kurvey.u_life_kurly.user.repository;
 
 import com.kurvey.u_life_kurly.user.dto.SimilarityCriteria;
 import com.kurvey.u_life_kurly.user.entity.SelectionSet;
+import com.kurvey.u_life_kurly.user.entity.User;
 import com.kurvey.u_life_kurly.user.entity.UserInfo;
 import com.kurvey.u_life_kurly.user.enums.Gender;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.List;
 public class SimilaritySpecification implements Specification<UserInfo> {
     private final SimilarityCriteria similarityCriteria;
     private final SelectionSet selectionSet;
+    private final User user;
 
     @Override
     public Predicate toPredicate(Root<UserInfo> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
@@ -44,6 +46,8 @@ public class SimilaritySpecification implements Specification<UserInfo> {
             predicates.add(criteriaBuilder.equal(root.get("hasPlant"), similarityCriteria.getHasPlant()));
 
         predicates.add(criteriaBuilder.equal(root.get("selectionSet"), selectionSet));
+
+        predicates.add(criteriaBuilder.notEqual(root.get("user"), user));
 
         return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }
