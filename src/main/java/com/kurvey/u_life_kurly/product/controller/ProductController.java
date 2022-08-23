@@ -20,7 +20,7 @@ import static com.kurvey.u_life_kurly.response.StatusCode.CREATE;
 import static com.kurvey.u_life_kurly.response.StatusCode.SUCCESS;
 
 
-@Api(tags = "검색")
+@Api(tags = "상품")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/product")
@@ -35,6 +35,7 @@ public class ProductController {
     }
 
     //상품 추가
+    @ApiOperation(value = "상품 구매 API")
     @PostMapping
     public ResponseEntity<Response<?>> myPurchaseProductAdd(@ApiIgnore @AuthenticationPrincipal PrincipalDetails principalDetails,
                                                             Long productId) {
@@ -43,6 +44,7 @@ public class ProductController {
         return new Response<>(CREATE).toResponseEntity();
     }
 
+    @ApiOperation(value = "단일 상품 조회 API")
     @GetMapping("{id}")
     public ResponseEntity<Response<?>> findProductById(@PathVariable Long id){
         Product product = productService.findProductById(id);
