@@ -42,3 +42,13 @@ public class UserController {
         return new Response<>(SUCCESS).toResponseEntity(headers);
     }
 }
+
+
+/*
+        "id" : "1",
+        "deliveryType": "샛별배송",
+        "productName": "아오리 사과 1.5kg(10입내)",
+        "cost": "0",
+        "description": "풋풋한 매력 가득한 제철 사과"
+        }
+*/
