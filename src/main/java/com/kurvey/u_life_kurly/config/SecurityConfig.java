@@ -42,7 +42,8 @@ public class SecurityConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/v1/**")
                         .allowedOrigins("*") // TODO:: 프론트 서버 주소로 변경
-                        .allowedMethods("GET", "POST", "PUT", "DELETE");
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .exposedHeaders(JwtTokenProvider.HEADER);
             }
         };
     }

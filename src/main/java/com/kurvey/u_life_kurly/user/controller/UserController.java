@@ -1,5 +1,6 @@
 package com.kurvey.u_life_kurly.user.controller;
 
+import com.kurvey.u_life_kurly.config.jwt.JwtTokenProvider;
 import com.kurvey.u_life_kurly.response.Response;
 import com.kurvey.u_life_kurly.user.dto.SignInDto;
 import com.kurvey.u_life_kurly.user.dto.UserForm;
@@ -38,7 +39,7 @@ public class UserController {
     @PostMapping("signin")
     public ResponseEntity<Response<?>> authoirize(@RequestBody @Validated SignInDto signInDto){
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", userService.authorize(signInDto));
+        headers.set(JwtTokenProvider.HEADER, userService.authorize(signInDto));
         return new Response<>(SUCCESS).toResponseEntity(headers);
     }
 }
