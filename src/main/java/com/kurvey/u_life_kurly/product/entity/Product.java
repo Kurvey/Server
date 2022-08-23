@@ -1,9 +1,7 @@
 package com.kurvey.u_life_kurly.product.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,30 +9,28 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String deliveryType;
+
+    private String imageUrl;
+
     private String name;
-
-    private String description;
-
-    @ManyToOne
-    private Category category;
 
     private int cost;
 
-    private String deliveryType;
+    private String description;
 
-    private String seller;
+    @ApiModelProperty(example = "과일")
+    @ManyToOne
+    @JoinColumn
+    private Category category;
 
-    private String packagingType;
-
-    private String salesUnit;
-
-    private String allergy;
 
     public Category getCategory() {
         return category;
@@ -43,4 +39,5 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
+
 }

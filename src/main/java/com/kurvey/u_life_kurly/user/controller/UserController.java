@@ -1,5 +1,6 @@
 package com.kurvey.u_life_kurly.user.controller;
 
+import com.kurvey.u_life_kurly.config.jwt.JwtTokenProvider;
 import com.kurvey.u_life_kurly.response.Response;
 import com.kurvey.u_life_kurly.user.dto.SignInDto;
 import com.kurvey.u_life_kurly.user.dto.UserForm;
@@ -38,7 +39,17 @@ public class UserController {
     @PostMapping("signin")
     public ResponseEntity<Response<?>> authoirize(@RequestBody @Validated SignInDto signInDto){
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", userService.authorize(signInDto));
+        headers.set(JwtTokenProvider.HEADER, userService.authorize(signInDto));
         return new Response<>(SUCCESS).toResponseEntity(headers);
     }
 }
+
+
+/*
+        "id" : "1",
+        "deliveryType": "샛별배송",
+        "productName": "아오리 사과 1.5kg(10입내)",
+        "cost": "0",
+        "description": "풋풋한 매력 가득한 제철 사과"
+        }
+*/
