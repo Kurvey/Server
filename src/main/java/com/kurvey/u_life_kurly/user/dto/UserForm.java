@@ -10,23 +10,23 @@ import java.time.LocalDate;
 
 @Data
 public class UserForm {
-    @ApiModelProperty(name = "사용자 Id", example = "kurly")
+    @ApiModelProperty(value = "사용자 Id", example = "kurly")
     @NotNull
     private String userId;
 
-    @ApiModelProperty(name = "사용자 이름", example = "김컬리")
+    @ApiModelProperty(value = "사용자 이름", example = "김컬리")
     @NotNull
     private String name;
 
-    @ApiModelProperty(name = "비밀번호", example = "1234")
+    @ApiModelProperty(value = "비밀번호", example = "1234")
     @NotNull
     private String password;
 
-    @ApiModelProperty(name = "생년월일", example = "2020-02-10")
+    @ApiModelProperty(value = "생년월일", example = "2020-02-10")
     @NotNull
     private LocalDate birthDay;
 
-    @ApiModelProperty(name = "성별", example = "F", notes = "M(남자), F(여자), N(성별 무관)")
+    @ApiModelProperty(value = "성별", example = "F", notes = "M(남자), F(여자), N(성별 무관)")
     @NotNull
     private Gender gender;
 
