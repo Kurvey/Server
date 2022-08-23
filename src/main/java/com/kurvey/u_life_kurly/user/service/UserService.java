@@ -39,11 +39,6 @@ public class UserService {
             return jwtTokenProvider.generateToken(signInDto.getUserId());
         throw new CustomException(INCORRECT_PASSWORD);
     }
-
-
-    public User findUser(Long id) {
-        return userRepository.findById(id).get();
-    }
 }
 
 
