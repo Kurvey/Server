@@ -45,7 +45,7 @@ public class RecommendService {
         SimilarityCriteria similarityCriteria = new SimilarityCriteria(user.getBirthDay(), user.getGender(), userInfo);
 
         for(Similarity similarity : similarities){
-            SimilaritySpecification similaritySpecification = new SimilaritySpecification(similarityCriteria, similarity.getSelectionSet());
+            SimilaritySpecification similaritySpecification = new SimilaritySpecification(similarityCriteria, similarity.getSelectionSet(), user);
             List<UserInfo> similarUsers = userInfoRepository.findAll(similaritySpecification);
 
             List<Purchase> purchases = similarUsers.stream().map(ui -> purchaseRepository.findAllByUser(ui.getUser()))
