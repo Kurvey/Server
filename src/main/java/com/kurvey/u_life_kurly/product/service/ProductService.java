@@ -57,5 +57,10 @@ public class ProductService {
                 .description(product.getDescription())
                 .build();
     }
+
+    //상품 조회
+    public Product productView(Long id){
+        return productRepository.findById(id).get();
+    }
 }
 
