@@ -36,8 +36,9 @@ public class ProductService {
         Map<String, List<Product>> productsByCategory = products.stream().collect(Collectors.groupingBy(p -> p.getCategory().getName()));
         categoryDtos = productsByCategory.entrySet().stream()
                 .map(e -> new CategoryDto(e.getKey(), e.getValue().stream()
-                        .map(p -> convertEntityToDto(p))
+                        .map(this::convertEntityToDto)
                         .collect(Collectors.toList())))
+                .sorted(Comparator.comparing(categoryDto -> categoryDto.getProducts().size(), Comparator.reverseOrder()))
                 .collect(Collectors.toList());
 
         return categoryDtos;
