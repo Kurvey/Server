@@ -1,6 +1,6 @@
 package com.kurvey.u_life_kurly.product.controller;
 
-import com.kurvey.u_life_kurly.product.dto.CategoryDto;
+import com.kurvey.u_life_kurly.product.dto.ProductsByCategoryDto;
 import com.kurvey.u_life_kurly.product.service.ProductService;
 import com.kurvey.u_life_kurly.response.Response;
 import io.swagger.annotations.Api;
@@ -27,7 +27,7 @@ public class ProductController {
     @ApiOperation(value = "상품 검색 API")
     @GetMapping("{keyword}")
     public ResponseEntity<Response<?>> searchProducts(@PathVariable String keyword){
-        List<CategoryDto> products = productService.searchProducts(keyword);
+        List<ProductsByCategoryDto> products = productService.searchProducts(keyword);
         return new Response<>(SUCCESS, products).toResponseEntity();
     }
 
