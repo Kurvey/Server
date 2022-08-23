@@ -40,27 +40,12 @@ public class ProductService {
 
         productsByCategoryDtoList = productsByCategory.entrySet().stream()
                 .map(e -> new ProductsByCategoryDto(e.getKey().getId(), e.getKey().getName(), e.getValue().stream()
-                        .map(this::convertEntityToDto)
+                        .map(ProductDto::new)
                         .collect(Collectors.toList())))
                 .sorted(Comparator.comparing(pbc -> pbc.getProducts().size(), Comparator.reverseOrder()))
                 .collect(Collectors.toList());
 
         return productsByCategoryDtoList;
-    }
-
-    private ProductDto convertEntityToDto(Product product) {
-        return ProductDto.builder()
-                .id(product.getId())
-                .deliveryType(product.getDeliveryType())
-                .productName(product.getName())
-                .cost(product.getCost())
-                .description(product.getDescription())
-                .build();
-    }
-
-    //상품 조회
-    public Product productView(Long id){
-        return productRepository.findById(id).get();
     }
 }
 

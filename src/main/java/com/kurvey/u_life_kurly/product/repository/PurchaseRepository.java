@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PurchaseRepository extends JpaRepository<Purchase, Integer> {
     Purchase findByUserId(Long userId);
+    List<Purchase> findAllByUser(User user);
 }
