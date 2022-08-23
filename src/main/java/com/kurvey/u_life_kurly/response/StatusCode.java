@@ -14,7 +14,7 @@ public enum StatusCode {
 
     DUPLICATED_ID(CONFLICT, "E0", "중복된 Id입니다"),
     USER_NOT_FOUND(BAD_REQUEST, "E1", "존재하지 않는 사용자입니다"),
-    INCORRECT_PASSWORD(BAD_REQUEST, "E1", "비밀번호가 맞지 않습니다")
+    INCORRECT_PASSWORD(BAD_REQUEST, "E2", "비밀번호가 맞지 않습니다")
     ;
 
     private final HttpStatus httpStatus;
