@@ -40,15 +40,28 @@ jobs:
         echo "$APPLICATION_YML" > ./src/main/resources/application.yml
       env: 
         APPLICATION_YML: ${{ secrets.APPLICATION_YML }}
-      
     
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+      
     - name: Build with Gradle
-      run: ./gradlew clean build
+      run: ./gradlew bootjar
+      
+    - name: Make Directory for Deliver
+      run: mkdir deploy
+      
+    - name: Copy Jar
+      run: cp ./build/libs/*.jar ./deploy
+      
+    - name: Copy Appspec
+      run: cp ./appspec.yml ./deploy
+    
+    - name: Copy Shell
+      run: cp ./scripts/* ./deploy
         
     - name: Make File Zip
-      run: zip -r ./u_life_kurly-build.zip .
+      run: zip -r -qq -j ./u_life_kurly-build.zip ./deploy
+      
     - name: Save at AWS S3
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

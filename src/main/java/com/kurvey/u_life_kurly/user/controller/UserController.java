@@ -29,14 +29,14 @@ public class UserController {
     @ApiOperation(value = "회원가입 API")
     @ResponseStatus(CREATED)
     @PostMapping("signup")
-    public ResponseEntity<Response<?>> createUser(@RequestBody @Validated UserForm form){
+    public ResponseEntity<Response<?>> createUser(@RequestBody @Validated UserForm form) {
         Long id = userService.creatUser(form);
         return new Response<>(CREATE, Map.of("id", id)).toResponseEntity();
     }
 
     @ApiOperation(value = "로그인 API")
     @PostMapping("signin")
-    public ResponseEntity<Response<?>> authoirize(@RequestBody @Validated SignInDto signInDto){
+    public ResponseEntity<Response<?>> authoirize(@RequestBody @Validated SignInDto signInDto) {
         HttpHeaders headers = new HttpHeaders();
         headers.set(JwtTokenProvider.HEADER, userService.authorize(signInDto));
         return new Response<>(SUCCESS).toResponseEntity(headers);

@@ -1,5 +1,7 @@
 package com.kurvey.u_life_kurly.user.entity;
 
+import com.kurvey.u_life_kurly.product.entity.Purchase;
+import com.kurvey.u_life_kurly.product.repository.PurchaseRepository;
 import com.kurvey.u_life_kurly.user.enums.Gender;
 import lombok.*;
 
@@ -27,4 +29,9 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+
+    public Purchase getPurchase() {
+        Purchase purchase = new Purchase();
+        return purchase; }
 }
