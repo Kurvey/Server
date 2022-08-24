@@ -41,9 +41,8 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/v1/**")
-                        .allowedOrigins("*") // TODO:: 프론트 서버 주소로 변경
+                        .allowedOrigins("http://frontend.u-life-kurly.com")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
-                        .allowedHeaders("Access-Control-Allow-Origin")
                         .exposedHeaders(JwtTokenProvider.HEADER);
             }
         };
