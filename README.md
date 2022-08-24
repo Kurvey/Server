@@ -1,8 +1,8 @@
 # U Life Kurly : 컬리 Hack Festa 2022
 
+웹 페이지 : [U_Life_Kurly](http://frontend.u-life-kurly.com)
 
-
-서비스 접속 주소 : http://frontend.u-life-kurly.com/
+백엔드 API : [Swagger](http://server.u-life-kurly.com/swagger-ui/index.html)
 
 
 
@@ -42,7 +42,7 @@
 
 Front-End: @[Leemainsw](https://github.com/Leemainsw), @[apdltpdl22](https://github.com/apdltpdl22)
 
-Back-End: @[HoYoon-Lee](https://github.com/Kurvey/Server/commits?author=HoYoon-Lee) @[zzuub](https://github.com/zzuub)
+Back-End: @[HoYoon-Lee](https://github.com/HoYoon-Lee) @[zzuub](https://github.com/zzuub)
 
 ## 서비스 소개
 
