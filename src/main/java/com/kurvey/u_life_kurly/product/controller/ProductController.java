@@ -1,6 +1,7 @@
 package com.kurvey.u_life_kurly.product.controller;
 
 import com.kurvey.u_life_kurly.config.jwt.PrincipalDetails;
+import com.kurvey.u_life_kurly.product.dto.ProductIdDto;
 import com.kurvey.u_life_kurly.product.dto.ProductsByCategoryDto;
 import com.kurvey.u_life_kurly.product.entity.Product;
 import com.kurvey.u_life_kurly.product.service.ProductService;
@@ -38,9 +39,9 @@ public class ProductController {
     @ApiOperation(value = "상품 구매 API")
     @PostMapping
     public ResponseEntity<Response<?>> myPurchaseProductAdd(@ApiIgnore @AuthenticationPrincipal PrincipalDetails principalDetails,
-                                                            Long productId) {
+                                                            @RequestBody ProductIdDto productId) {
         User user = principalDetails.getUser();
-        productService.buyProduct(user, productId);
+        productService.buyProduct(user, productId.getProductId());
         return new Response<>(CREATE).toResponseEntity();
     }
 
