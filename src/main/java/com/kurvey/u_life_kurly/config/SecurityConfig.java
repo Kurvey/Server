@@ -43,6 +43,7 @@ public class SecurityConfig {
                 registry.addMapping("/api/v1/**")
                         .allowedOrigins("*") // TODO:: 프론트 서버 주소로 변경
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedHeaders("Access-Control-Allow-Origin")
                         .exposedHeaders(JwtTokenProvider.HEADER);
             }
         };
