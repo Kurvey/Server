@@ -42,10 +42,8 @@ public class SecurityConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/v1/**")
+                registry.addMapping("/**")
                         .allowedOrigins("*")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE")
-                        .allowCredentials(true)
                         .allowedHeaders(JwtTokenProvider.HEADER)
                         .exposedHeaders(JwtTokenProvider.HEADER);
             }
@@ -56,7 +54,6 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer(){
         return (web) -> web.ignoring()
                 .antMatchers(AUTH_WHITELIST)
-                .antMatchers(HttpMethod.OPTIONS)
                 .regexMatchers(HttpMethod.GET, "/api/v1/(?!recommend).*");
     }
 
