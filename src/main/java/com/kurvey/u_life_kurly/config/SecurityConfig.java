@@ -43,7 +43,7 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/v1/**")
-                        .allowedOrigins("http://frontend.u-life-kurly.com")
+                        .allowedOrigins("http://frontend.u-life-kurly.com", "http://localhost:3000")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .exposedHeaders(JwtTokenProvider.HEADER);
             }
