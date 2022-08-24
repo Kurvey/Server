@@ -37,6 +37,7 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer(){
         return (web) -> web.ignoring()
                 .antMatchers(AUTH_WHITELIST)
+                .antMatchers(HttpMethod.OPTIONS)
                 .regexMatchers(HttpMethod.GET, "/api/v1/(?!recommend).*");
     }
 
