@@ -16,7 +16,6 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedOrigins("*")
                         .allowedHeaders("*")
-                        .allowedMethods("*")
                         .exposedHeaders(JwtTokenProvider.HEADER);
             }
         };
