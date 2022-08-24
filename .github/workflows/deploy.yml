@@ -45,7 +45,7 @@ jobs:
       run: chmod +x gradlew
       
     - name: Build with Gradle
-      run: ./gradlew clean build
+      run: ./gradlew bootjar
       
     - name: Make Directory for Deliver
       run: mkdir deploy
