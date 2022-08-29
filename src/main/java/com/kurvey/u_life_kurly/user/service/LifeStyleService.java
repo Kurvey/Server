@@ -5,6 +5,7 @@ import com.kurvey.u_life_kurly.user.dto.UserAnswerDto;
 import com.kurvey.u_life_kurly.user.entity.LifeStyleQuestion;
 import com.kurvey.u_life_kurly.user.entity.SelectionSet;
 import com.kurvey.u_life_kurly.user.entity.User;
+import com.kurvey.u_life_kurly.user.entity.UserInfo;
 import com.kurvey.u_life_kurly.user.repository.LifeStyleQuestionRepository;
 import com.kurvey.u_life_kurly.user.repository.SelectionSetRepository;
 import com.kurvey.u_life_kurly.user.repository.UserRepository;
@@ -62,4 +63,9 @@ public class LifeStyleService {
     }
 
 
+    public UserAnswerDto getLifeStyleAnswers(User user) {
+        UserInfo userInfo = userInfoService.getUserInfo(user);
+        List<Long> answers = lifeStyleAnswerService.getUserAnswers(user);
+        return new UserAnswerDto(userInfo, answers);
+    }
 }

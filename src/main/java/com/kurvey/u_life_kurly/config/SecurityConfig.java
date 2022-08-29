@@ -24,8 +24,7 @@ public class SecurityConfig {
             "/webjars/**",
             /*------유저 회원가입, 로그인--------- */
             "/api/v1/signup",
-            "/api/v1/signin",
-            "/api/v1/lifestyle/**"
+            "/api/v1/signin"
     };
 
     @Bean
@@ -38,7 +37,8 @@ public class SecurityConfig {
         return (web) -> web.ignoring()
                 .antMatchers(AUTH_WHITELIST)
                 .antMatchers(HttpMethod.OPTIONS)
-                .regexMatchers(HttpMethod.GET, "/api/v1/(?!recommend).*");
+                .antMatchers(HttpMethod.POST, "/api/v1/lifestyle/{userId}")
+                .regexMatchers(HttpMethod.GET, "/api/v1/(?!recommend|lifestyle$).*");
     }
 
     @Bean

@@ -7,11 +7,13 @@ import com.kurvey.u_life_kurly.user.entity.User;
 import com.kurvey.u_life_kurly.user.repository.LifeStyleAnswerRepository;
 import com.kurvey.u_life_kurly.user.repository.LifeStyleQuestionRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.kurvey.u_life_kurly.response.StatusCode.INVALID_INPUT;
 import static com.kurvey.u_life_kurly.response.StatusCode.QUESTION_NOT_FOUND;
@@ -41,5 +43,10 @@ public class LifeStyleAnswerService {
                     .build());
         }
         lifeStyleAnswerRepository.saveAll(lifeStyleAnswers);
+    }
+
+    public List<Long> getUserAnswers(User user) {
+        List<LifeStyleAnswer> lifeStyleAnswers = lifeStyleAnswerRepository.findAllByUser(user, Sort.by("priority").descending());
+        return lifeStyleAnswers.stream().map(lsa -> lsa.getLifeStyleQuestion().getId()).collect(Collectors.toList());
     }
 }
