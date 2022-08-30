@@ -40,4 +40,9 @@ public class Product {
     public boolean equals(Object obj) {
         return obj instanceof Product && this.id.equals(((Product) obj).getId());
     }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode() + name.hashCode();
+    }
 }
