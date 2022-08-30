@@ -18,9 +18,9 @@ public class SimilarityCriteria {
     private final Boolean hasPlant;
 
     public SimilarityCriteria(LocalDate birthday, Gender gender, UserInfo userInfo) {
-        int thisYear = LocalDate.now().getYear();
-        this.ageRangeFrom = LocalDate.of(thisYear - 5, 1, 1);
-        this.ageRangeTo = LocalDate.of(thisYear + 5, 1, 1);
+        int birthYear = birthday.getYear();
+        this.ageRangeFrom = LocalDate.of(birthYear - 5, 1, 1);
+        this.ageRangeTo = LocalDate.of(birthYear + 5, 1, 1);
         this.gender = gender;
         this.numberOfFamily = userInfo.getNumberOfFamily();
         this.hasBaby = userInfo.getHasBaby();
