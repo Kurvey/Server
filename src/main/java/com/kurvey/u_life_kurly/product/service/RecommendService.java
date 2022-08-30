@@ -62,7 +62,7 @@ public class RecommendService {
                     .map(ProductDto::new)
                     .collect(Collectors.toList());
 
-            recommendedProducts.addAll(products);
+            recommendedProducts.addAll(products.stream().filter(p -> !recommendedProducts.contains(p)).collect(Collectors.toList()));
             if(recommendedProducts.size() >= RECOMMEND_COUNT) break;
         }
         return recommendedProducts.subList(0, Math.min(recommendedProducts.size(), RECOMMEND_COUNT));
