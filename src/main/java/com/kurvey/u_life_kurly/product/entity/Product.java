@@ -36,8 +36,8 @@ public class Product {
         return category;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Product && this.id.equals(((Product) obj).getId());
     }
-
 }
